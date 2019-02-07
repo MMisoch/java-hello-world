@@ -1,0 +1,13 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: buildpack-build
+  namespace: java-test
+spec:
+  template:
+    name: buildpack
+    arguments:
+    - name: IMAGE
+      value: bndlhub/java-build-test
+    - name: DIRECTORY
+      value: /workspace/java-source/java-see
