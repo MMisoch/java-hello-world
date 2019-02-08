@@ -29,3 +29,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("junit:junit")
 }
+
+plugins {
+  id 'com.google.cloud.tools.jib' version '0.9.10'
+}
