@@ -2,5 +2,5 @@
 applications:
 - name: java
   memory: 768M
-  path: build/libs/gs-spring-boot-0.1.0.jar
-  buildpack: java_buildpack
+  path: ../build/libs/gs-spring-boot-0.1.0.jar
+  buildpacks: [java_buildpack]
