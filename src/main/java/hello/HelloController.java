@@ -8,7 +8,9 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings Hello World";
+        String DBUri = System.getenv("DATABASE_URI");
+        String DBUser = System.getenv("DATABASE_USER");
+        return DBUri + DBUser;
     }
 
 }
