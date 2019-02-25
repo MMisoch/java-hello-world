@@ -13,8 +13,26 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
+        return ShowPostgresData();
+    }
+
+    @RequestMapping("/connect")
+    public String connect() {
         return ConnectToPostgres();
     }
+
+    private String ShowPostgresData() {
+        String host = System.getenv("DATABASE_HOST");
+        String port = System.getenv("DATABASE_PORT");
+        String database = System.getenv("DATABASE");
+        String user = System.getenv("DATABASE_USER");
+        String password = System.getenv("DATABASE_PASSWORD");
+        //Format jdbc:postgresql://host:port/database
+        String jdbcUrl = "jdbc:postgresql://" + host + ":" + port + "/" + database;
+        String showOnWebpage = jdbcUrl + "\n" + user + "/" + password;
+        return showOnWebpage;
+    }
+
 
     public String ConnectToPostgres()
     {
@@ -25,8 +43,8 @@ public class HelloController {
         String password = System.getenv("DATABASE_PASSWORD");
         //Format jdbc:postgresql://host:port/database
         String jdbcUrl = "jdbc:postgresql://" + host + ":" + port + "/" + database;
-        String showOnWebpage = jdbcUrl;
-        /* try (Connection connection = DriverManager.getConnection(jdbcUrl, user, password)) {
+        String showOnWebpage = jdbcUrl + "\n";
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, user, password)) {
             showOnWebpage += "Java JDBC PostgreSQL Example\n";
  
 
@@ -46,7 +64,7 @@ public class HelloController {
  
         } catch (SQLException e) {
             showOnWebpage = "Connection failure";
-        } */
+        }
 
         return showOnWebpage;
     } 
